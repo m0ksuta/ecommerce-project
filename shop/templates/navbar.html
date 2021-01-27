@@ -17,6 +17,35 @@ menu
            </li>
            <li class="nav-item"><a class="nav-link text-uppercase fw-bold px-3 text-light" href="">Contact</a></li>
            <li class="nav-item"><a class="nav-link text-uppercase fw-bold px-3 text-light" href="#">About</a></li>
+           {% if request.user.is_authenticated and request.user.first_name %}
+                      <li class="nav-item">
+                          <span class="nav-link text-uppercase fw-bold px-3 text-light">
+                              Welcome, {{ request.user.first_name }}!
+                              <i class="material-icons cart-icon text-white">account_circle</i>
+                          </span>
+                      </li>
+
+                    <li class="nav-item">
+                          <a class="nav-link text-uppercase fw-bold px-3 text-light" href="{% url 'signout' %}">
+                              Sign Out
+                              <i class="material-icons cart-icon text-white">exit_to_app</i>
+                          </a>
+                      </li>
+           {% else %}
+                    <li class="nav-item">
+                          <a class="nav-link text-uppercase fw-bold px-3 text-light" href="{% url 'signup' %}">
+                              Sign Up
+                              <i class="material-icons cart-icon text-white">add</i>
+                          </a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link text-uppercase fw-bold px-3 text-light" href="{% url 'login' %}">
+                              Log in
+                              <i class="material-icons cart-icon text-white">login</i>
+                          </a>
+                      </li>
+           {% endif %}
+
 
            {% if item_count > 0 %}
            <li class="nav-item">
