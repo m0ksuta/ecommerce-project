@@ -47,13 +47,16 @@ menu
            {% endif %}
 
 
-           {% if item_count > 0 %}
+           {% if item_count > 0 and request.user.is_authenticated and request.user.first_name %}
            <li class="nav-item">
                <a class="nav-link text-uppercase fw-bold px-3 text-light" href="{% url 'cart_detail' %}">
                 <i class="material-icons cart-icon text-white">shopping_cart</i>({{ item_count }})
                </a>
            </li>
+
            {% endif %}
+
+
         </ul>
 
        <form class="form-inline" action="">

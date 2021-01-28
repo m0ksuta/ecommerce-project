@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Order{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+    	
+
+
+    	<div class="text-center mx-auto pt-3">
+    	{% if request.user.is_authenticated and request.user.first_name %}
+    		
+    		<h2 class="product_title">
+    			Make your order
+    		</h2>
+    		<br>
+
+    	</div>
+    	<div class="mx-auto text-center">
+    		<form class="">
+                <div class="row mx-auto pb-2">
+    	    		<input type="text" placeholder="First name" class="col-sm-12 col-md-12
+    	    		col-lg-6 mx-auto text-center p-1">
+                </div>
+                <div class="row mx-auto pb-2">
+                    <input type="text" placeholder="Last name" class="col-sm-12 col-md-12
+    	    		col-lg-6 mx-auto text-center p-1">
+                </div>
+                <div class="row mx-auto pb-2">
+                    <input type="text" placeholder="address" class="col-sm-12 col-md-12
+    	    		col-lg-6 mx-auto text-center p-1">
+                </div>
+                <div class="row mx-auto pb-2">
+                    <input type="text" placeholder="post index" class="col-sm-12 col-md-12
+    	    		col-lg-6 mx-auto text-center p-1">
+                </div>
+                <div class="row mx-auto pb-2">
+                    <input type="text" placeholder="email" class="col-sm-12 col-md-12
+    	    		col-lg-6 mx-auto text-center p-1">
+                </div>
+                <p>Total cost: <strong>${{ total }}</strong></p>
+                <button type="submit" class="btn btn-secondary mx-3 my-3">
+                    ORDER
+                </button>
+                <a href="{% url 'cart_detail' %}" class="btn btn-secondary mx-3 my-3" style="text-decoration: none;">
+                    	CANCEL
+                </a>
+    		</form>
+    	{% else %}
+    		<h1>SignUp or LogIn</h1>
+    		<a href="{% url 'login' %}"class="btn btn-secondary mx-3 my-3" style="text-decoration: none;">Account</a>
+    	{% endif %}
+    	</div>
+
+
+
+    </div>
+
+{% endblock %}

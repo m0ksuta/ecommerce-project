@@ -122,3 +122,12 @@ def login_view(request):
 def sign_out_view(request):
     logout(request)
     return redirect('login')
+
+
+def order_view(request, total=0, counter=0):
+    cart = Cart.objects.get(cart_id=_cart_id(request))
+    cart_items = CartItem.objects.filter(cart=cart, active=True)
+    for cart_item in cart_items:
+        total += (cart_item.product.price * cart_item.quantity)
+        counter += cart_item.quantity
+    return render(request, 'order.html', dict(total=total, counter=counter))
